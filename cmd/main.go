@@ -24,6 +24,7 @@ func getMatches() []Item {
 
 	c := colly.NewCollector(
 		colly.AllowedDomains("www.tff.org"),
+		colly.CacheDir(""),
 	)
 
 	c.OnHTML("tr.haftaninMaclariTr", func(h *colly.HTMLElement) {
@@ -36,7 +37,7 @@ func getMatches() []Item {
 		matches = append(matches, item)
 
 	})
-	err := c.Visit("https://www.tff.org/Default.aspx?pageID=142&hafta=32")
+	err := c.Visit("https://www.tff.org/Default.aspx?pageID=142&hafta=2")
 	if err != nil {
 		fmt.Println("error visiting page", err)
 	}
@@ -54,6 +55,7 @@ func main() {
 		json.NewEncoder(w).Encode(resp)
 
 	})
+
 	fmt.Println("Sunucu çalışıyor http://localhost:8080/matches")
 
 	http.ListenAndServe(":8080", nil)
