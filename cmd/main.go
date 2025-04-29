@@ -37,7 +37,7 @@ func getMatches() []Item {
 		matches = append(matches, item)
 
 	})
-	err := c.Visit("https://www.tff.org/Default.aspx?pageID=142&hafta=2")
+	err := c.Visit("https://www.tff.org/Default.aspx?pageID=142&hafta=23")
 	if err != nil {
 		fmt.Println("error visiting page", err)
 	}
@@ -56,8 +56,8 @@ func main() {
 
 	})
 
-	fmt.Println("Sunucu çalışıyor http://localhost:8080/matches")
+	fmt.Println("Sunucu çalışıyor http://0.0.0.0:8080/matches")
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe("0.0.0.0:8080", nil)
 
 }
